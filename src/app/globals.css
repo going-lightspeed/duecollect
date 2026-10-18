@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #14221c;
+  --ink-soft: #3d5248;
+  --mist: #eef4ef;
+  --paper: #f7faf7;
+  --sage: #7fa38f;
+  --sage-deep: #3f6b55;
+  --teal: #1a6b5c;
+  --teal-bright: #2a9d8f;
+  --amber: #d4a017;
+  --coral: #c45c4a;
+  --line: rgba(20, 34, 28, 0.1);
+  --glow: rgba(42, 157, 143, 0.18);
+  --background: var(--paper);
+  --foreground: var(--ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-mist: var(--mist);
+  --color-paper: var(--paper);
+  --color-sage: var(--sage);
+  --color-sage-deep: var(--sage-deep);
+  --color-teal: var(--teal);
+  --color-teal-bright: var(--teal-bright);
+  --color-amber: var(--amber);
+  --color-coral: var(--coral);
+  --font-display: var(--font-syne);
+  --font-sans: var(--font-figtree);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 8% -10%, rgba(127, 163, 143, 0.35), transparent 55%),
+    radial-gradient(900px 500px at 92% 0%, rgba(42, 157, 143, 0.22), transparent 50%),
+    radial-gradient(700px 400px at 70% 100%, rgba(212, 160, 23, 0.12), transparent 45%),
+    linear-gradient(165deg, #f4f8f5 0%, #eef3ef 40%, #e8f0ea 100%);
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+  z-index: 0;
+}
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.font-display {
+  font-family: var(--font-syne), var(--font-figtree), sans-serif;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(196, 92, 74, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(196, 92, 74, 0);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.55s ease-out both;
+}
+
+.animate-fade-up-delay-1 {
+  animation: fade-up 0.55s ease-out 0.08s both;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.55s ease-out 0.16s both;
+}
+
+.animate-fade-up-delay-3 {
+  animation: fade-up 0.55s ease-out 0.24s both;
+}
+
+.mark-drift {
+  animation: drift 5s ease-in-out infinite;
+}
+
+.overdue-pulse {
+  animation: soft-pulse 2.4s ease-in-out infinite;
+}
+
+.panel {
+  background: rgba(247, 250, 247, 0.78);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+  border-radius: 0.65rem;
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  border-color: var(--teal-bright);
+  box-shadow: 0 0 0 3px var(--glow);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1.2rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s, opacity 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: #f4fbf8;
+}
+
+.btn-primary:hover {
+  background: var(--sage-deep);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+
+.btn-danger {
+  background: rgba(196, 92, 74, 0.12);
+  color: var(--coral);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.55rem;
+  border-radius: 0.4rem;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(63, 107, 85, 0.35);
+  border-radius: 999px;
+}
