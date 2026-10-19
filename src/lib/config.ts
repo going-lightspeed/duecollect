@@ -10,7 +10,7 @@ export function appBaseUrl() {
 export function paymentConfig() {
   return {
     upiId: process.env.PAYMENT_UPI_ID?.trim() || "",
-    payeeName: process.env.PAYMENT_PAYEE_NAME?.trim() || "Remitra",
+    payeeName: process.env.PAYMENT_PAYEE_NAME?.trim() || "DueCollect",
     notePrefix: process.env.PAYMENT_NOTE_PREFIX?.trim() || "INV",
   };
 }

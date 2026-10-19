@@ -24,9 +24,6 @@ type AdminStatus = {
 
 export default function AdminPage() {
   const [auth, setAuth] = useState<"loading" | "guest" | "admin">("loading");
-  const [username, setUsername] = useState("admin");
-  const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState<string | null>(null);
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [payments, setPayments] = useState<Payment[]>([]);
   const [qrCache, setQrCache] = useState<
@@ -67,22 +64,6 @@ export default function AdminPage() {
   useEffect(() => {
     load().catch(() => setAuth("guest"));
   }, [load]);
-
-  async function onLogin(e: FormEvent) {
-    e.preventDefault();
-    setLoginError(null);
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
-    if (!res.ok) {
-      setLoginError("Invalid username or password");
-      return;
-    }
-    setPassword("");
-    await load();
-  }
 
   async function logout() {
     await fetch("/api/auth/logout", { method: "POST" });
@@ -183,48 +164,12 @@ export default function AdminPage() {
   }
 
   if (auth === "guest") {
+    if (typeof window !== "undefined") {
+      window.location.replace("/login?next=/admin");
+    }
     return (
-      <main className="app-shell mx-auto max-w-md px-4 py-16">
-        <div className="animate-fade-up panel rounded-2xl p-6">
-          <p className="font-display text-sm font-semibold tracking-[0.18em] text-[var(--sage-deep)] uppercase">
-            Remitra
-          </p>
-          <h1 className="font-display mt-2 text-3xl font-semibold">
-            Admin login
-          </h1>
-          <p className="mt-2 mb-5 text-sm text-[var(--ink-soft)]">
-            Default account is <strong>admin</strong>. Change password via{" "}
-            <code>ADMIN_PASSWORD</code> in env.
-          </p>
-          <form onSubmit={onLogin} className="space-y-3">
-            <input
-              className="input"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Username"
-              autoComplete="username"
-            />
-            <input
-              className="input"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              autoComplete="current-password"
-            />
-            {loginError && (
-              <p className="text-sm text-[var(--coral)]">{loginError}</p>
-            )}
-            <button type="submit" className="btn btn-primary w-full">
-              Sign in
-            </button>
-          </form>
-          <p className="mt-4 text-center text-sm">
-            <Link href="/" className="text-[var(--teal)]">
-              ← Back to dashboard
-            </Link>
-          </p>
-        </div>
+      <main className="app-shell mx-auto max-w-md px-4 py-20 text-center text-[var(--ink-soft)]">
+        Redirecting to sign in…
       </main>
     );
   }

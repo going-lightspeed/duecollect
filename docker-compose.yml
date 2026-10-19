@@ -1,0 +1,28 @@
+services:
+  remitra:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      NEBIUS_API_KEY: ${NEBIUS_API_KEY}
+      NEBIUS_BASE_URL: ${NEBIUS_BASE_URL:-https://api.tokenfactory.nebius.com/v1/}
+      NEBIUS_MODEL: ${NEBIUS_MODEL:-nvidia/Nemotron-3_5-Lightning}
+      APP_BASE_URL: ${APP_BASE_URL:-http://localhost:3000}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
+      ADMIN_SESSION_SECRET: ${ADMIN_SESSION_SECRET:-change-me}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_SECURE: ${SMTP_SECURE:-false}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      SMTP_FROM: ${SMTP_FROM:-}
+      PAYMENT_UPI_ID: ${PAYMENT_UPI_ID:-}
+      PAYMENT_PAYEE_NAME: ${PAYMENT_PAYEE_NAME:-Remitra}
+
+    volumes:
+      - remitra-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  remitra-data:

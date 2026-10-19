@@ -35,7 +35,7 @@ export function esc(s: string) {
 }
 
 export function invoiceEmailTag(invoiceId: string) {
-  return `[Remitra INV:${invoiceId}]`;
+  return `[DueCollect INV:${invoiceId}]`;
 }
 
 /** Public pay-page links are only useful when the app isn't on localhost. */
@@ -197,7 +197,7 @@ export async function sendPaymentReminderEmail(
 
   const html = `
   <div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#14221c;line-height:1.5">
-    <p style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#3f6b55">Remitra</p>
+    <p style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#3f6b55">DueCollect</p>
     <h1 style="font-size:22px;margin:8px 0 16px">Payment reminder</h1>
     <p>${esc(reminder.message)}</p>
     <p style="margin:20px 0;padding:16px;background:#eef4ef;border-radius:12px">

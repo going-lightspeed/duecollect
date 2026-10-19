@@ -15,7 +15,7 @@ const figtree = Figtree({
 });
 
 export const metadata: Metadata = {
-  title: "duecollect — AI invoice reminders",
+  title: "DueCollect — AI invoice collection",
   description:
     "Track invoices and get timely payable reminders written by a local NVIDIA Cosmos model.",
 };

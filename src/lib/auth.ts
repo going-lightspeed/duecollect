@@ -1,15 +1,16 @@
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { adminCredentials } from "./config";
 
-const COOKIE = "remitra_admin";
+const COOKIE = "duecollect_admin";
 const MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
 function secret() {
   return (
     process.env.ADMIN_SESSION_SECRET ||
     process.env.ADMIN_PASSWORD ||
-    "remitra-dev-secret"
+    "duecollect-dev-secret"
   );
 }
 
@@ -60,6 +61,12 @@ export async function setAdminSession(username: string) {
 export async function clearAdminSession() {
   const jar = await cookies();
   jar.delete(COOKIE);
+}
+
+/** Returns a 401 response when nobody is logged in, otherwise null. */
+export async function adminGuard(): Promise<NextResponse | null> {
+  if (await isAdminLoggedIn()) return null;
+  return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 }
 
 export function checkAdminLogin(username: string, password: string) {

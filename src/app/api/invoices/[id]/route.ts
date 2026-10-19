@@ -1,3 +1,4 @@
+import { adminGuard } from "@/lib/auth";
 import { NextResponse } from "next/server";
 import { deleteInvoice, getInvoice, upsertInvoice } from "@/lib/db";
 import { refreshInvoiceStatus } from "@/lib/reminders";
@@ -5,6 +6,8 @@ import { refreshInvoiceStatus } from "@/lib/reminders";
 type Ctx = { params: Promise<{ id: string }> };
 
 export async function PATCH(request: Request, ctx: Ctx) {
+  const denied = await adminGuard();
+  if (denied) return denied;
   const { id } = await ctx.params;
   const existing = await getInvoice(id);
   if (!existing) {
@@ -27,6 +30,8 @@ export async function PATCH(request: Request, ctx: Ctx) {
 }
 
 export async function DELETE(_request: Request, ctx: Ctx) {
+  const denied = await adminGuard();
+  if (denied) return denied;
   const { id } = await ctx.params;
   const ok = await deleteInvoice(id);
   if (!ok) {

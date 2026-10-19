@@ -197,11 +197,11 @@ export async function processInboundPayment(opts: {
   };
 }
 
-/** Extract invoice id from email subject/body like [Remitra INV:uuid] */
+/** Extract invoice id from email subject/body like [DueCollect INV:uuid] (the older [Remitra INV:] tag still works) */
 export function extractInvoiceIdFromText(...parts: string[]): string | null {
   const blob = parts.join("\n");
   const m =
-    blob.match(/\[Remitra\s+INV:([0-9a-f-]{36})\]/i) ||
+    blob.match(/\[(?:DueCollect|Remitra)\s+INV:([0-9a-f-]{36})\]/i) ||
     blob.match(/INV:([0-9a-f-]{36})/i) ||
     blob.match(
       /\/pay\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i,

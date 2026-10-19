@@ -126,7 +126,7 @@ export async function syncPaymentsCsv(payments: Payment[]): Promise<void> {
 }
 
 /* ------------------------------------------------------------------ */
-/* emails.csv — every email Remitra sent or received (append-only)     */
+/* emails.csv — every email DueCollect sent or received (append-only)     */
 /* ------------------------------------------------------------------ */
 
 const EMAILS_FILE = path.join(DATA_DIR, "emails.csv");

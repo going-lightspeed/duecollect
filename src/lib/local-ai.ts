@@ -4,7 +4,7 @@ import OpenAI from "openai";
  * Local AI — NVIDIA Cosmos3 served by vLLM (OpenAI-compatible API).
  *
  * Start the server from the cosmos-framework repo (see .env.example), then
- * Remitra talks to http://localhost:8000/v1. Any other OpenAI-compatible
+ * DueCollect talks to http://localhost:8000/v1. Any other OpenAI-compatible
  * local server (Ollama, LM Studio, llama.cpp) works too — just change the
  * LOCAL_AI_* variables.
  */

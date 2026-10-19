@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 import { v4 as uuid } from "uuid";
-import { isAdminLoggedIn } from "@/lib/auth";
+import { adminGuard, isAdminLoggedIn } from "@/lib/auth";
 import { listInvoices, upsertInvoice } from "@/lib/db";
 import { refreshInvoiceStatus } from "@/lib/reminders";
 import type { CreateInvoiceInput, Invoice } from "@/lib/types";
 
 export async function GET() {
+  const denied = await adminGuard();
+  if (denied) return denied;
   const invoices = await listInvoices();
   const refreshed = await Promise.all(
     invoices.map(async (inv) => {

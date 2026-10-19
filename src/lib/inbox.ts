@@ -178,7 +178,7 @@ async function handleMessage(mail: ParsedMail, ownAddress: string) {
 
 let running = false;
 
-/** Read new mail from the Remitra mailbox and process customer payment replies. */
+/** Read new mail from the DueCollect mailbox and process customer payment replies. */
 export async function pollInbox(): Promise<InboxResult> {
   const result: InboxResult = { checked: 0, settled: 0, needsReview: 0, ignored: 0, errors: [] };
   if (!receivingConfigured()) {

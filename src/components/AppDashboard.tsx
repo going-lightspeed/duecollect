@@ -78,6 +78,10 @@ export default function AppDashboard() {
       fetch("/api/reminders"),
       fetch("/api/stats"),
     ]);
+    if ([invRes, remRes, statsRes].some((r) => r.status === 401)) {
+      window.location.replace("/login");
+      return;
+    }
     if (!invRes.ok || !remRes.ok || !statsRes.ok) {
       throw new Error("Failed to load data");
     }
@@ -192,10 +196,10 @@ export default function AppDashboard() {
               aria-hidden
               className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--teal)] text-sm font-bold text-[#f4fbf8]"
             >
-              R
+              D
             </span>
             <span className="font-display text-sm font-semibold tracking-[0.18em] text-[var(--sage-deep)] uppercase">
-              Remitra
+              DueCollect
             </span>
           </div>
           <h1 className="font-display max-w-xl text-4xl leading-[1.05] font-semibold tracking-tight text-[var(--ink)] sm:text-5xl">
@@ -213,6 +217,16 @@ export default function AppDashboard() {
             <Link href="/admin" className="btn btn-ghost">
               Admin
             </Link>
+            <button
+              type="button"
+              className="btn btn-ghost"
+              onClick={async () => {
+                await fetch("/api/auth/logout", { method: "POST" });
+                window.location.replace("/login");
+              }}
+            >
+              Log out
+            </button>
             <button
               type="button"
               className="btn btn-primary"
@@ -585,7 +599,7 @@ export default function AppDashboard() {
       </div>
 
       <footer className="mt-12 border-t border-[var(--line)] pt-6 text-center text-xs text-[var(--ink-soft)]">
-        Remitra · local inference ({ai?.model ?? "nvidia/Cosmos3-Nano"})
+        DueCollect · local inference ({ai?.model ?? "nvidia/Cosmos3-Nano"})
       </footer>
     </div>
   );

@@ -98,7 +98,7 @@ export default function PayPage() {
     <main className="app-shell mx-auto max-w-lg px-4 py-10 sm:py-14">
       <div className="animate-fade-up mb-8 text-center">
         <p className="font-display text-sm font-semibold tracking-[0.18em] text-[var(--sage-deep)] uppercase">
-          Remitra Pay
+          DueCollect Pay
         </p>
         <h1 className="font-display mt-2 text-3xl font-semibold">
           {paid ? "Invoice paid" : "Scan to pay"}
