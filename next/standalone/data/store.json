@@ -1,0 +1,126 @@
+{
+  "invoices": [
+    {
+      "id": "7e7be7c1-5bca-47d7-9ca6-4d3c1c95b292",
+      "direction": "payable",
+      "partyName": "Northwind Electric",
+      "partyEmail": "",
+      "amount": 420.5,
+      "currency": "USD",
+      "description": "Office utilities",
+      "issueDate": "2026-10-17",
+      "dueDate": "2026-10-20",
+      "graceDays": 7,
+      "status": "pending",
+      "reminderDaysBefore": [
+        7,
+        3,
+        1
+      ],
+      "createdAt": "2026-10-17T04:40:45.042Z"
+    },
+    {
+      "id": "e2813b94-b0c2-40d0-baf8-400a3903aaea",
+      "direction": "receivable",
+      "partyName": "Pixel Foundry LLC",
+      "partyEmail": "",
+      "amount": 2800,
+      "currency": "USD",
+      "description": "Brand redesign phase 1",
+      "issueDate": "2026-10-17",
+      "dueDate": "2026-09-27",
+      "graceDays": 7,
+      "status": "paid",
+      "reminderDaysBefore": [
+        7,
+        3,
+        1
+      ],
+      "createdAt": "2026-10-17T04:40:45.073Z",
+      "paidAt": "2026-10-17T05:40:46.009Z"
+    },
+    {
+      "id": "9384e0b1-4996-4180-9643-6061e3f22bc6",
+      "direction": "payable",
+      "partyName": "Cloudflare",
+      "partyEmail": "",
+      "amount": 49,
+      "currency": "USD",
+      "description": "Workers plan",
+      "issueDate": "2026-10-17",
+      "dueDate": "2026-10-17",
+      "graceDays": 7,
+      "status": "pending",
+      "reminderDaysBefore": [
+        7,
+        3,
+        1
+      ],
+      "createdAt": "2026-10-17T04:40:45.088Z"
+    },
+    {
+      "id": "4e12f907-72d6-45ac-a91e-3609c6eeb0e7",
+      "direction": "receivable",
+      "partyName": "test",
+      "partyEmail": "billing@acme.to",
+      "amount": 0.01,
+      "currency": "USD",
+      "description": "",
+      "issueDate": "2026-10-17",
+      "dueDate": "2026-10-07",
+      "graceDays": 7,
+      "status": "paid",
+      "reminderDaysBefore": [
+        7,
+        3,
+        1
+      ],
+      "createdAt": "2026-10-17T05:26:25.626Z",
+      "paidAt": "2026-10-17T05:40:42.950Z"
+    }
+  ],
+  "reminders": [
+    {
+      "id": "5669885b-dea1-43c3-af4c-8485fcce7343",
+      "invoiceId": "7e7be7c1-5bca-47d7-9ca6-4d3c1c95b292",
+      "partyName": "Northwind Electric",
+      "direction": "payable",
+      "kind": "upcoming",
+      "message": "Heads up — $420.50 is due to Northwind Electric in 3 days (2026-10-20). Set funds aside so payment stays on time.",
+      "amount": 420.5,
+      "currency": "USD",
+      "dueDate": "2026-10-20",
+      "createdAt": "2026-10-17T04:40:45.351Z",
+      "aiGenerated": false,
+      "daysRelative": 3
+    },
+    {
+      "id": "15efbf78-2cba-4275-9041-6bd37df342c1",
+      "invoiceId": "9384e0b1-4996-4180-9643-6061e3f22bc6",
+      "partyName": "Cloudflare",
+      "direction": "payable",
+      "kind": "due_today",
+      "message": "Payment due today: $49.00 owed to Cloudflare. Settle invoice “Workers plan” to avoid late fees.",
+      "amount": 49,
+      "currency": "USD",
+      "dueDate": "2026-10-17",
+      "createdAt": "2026-10-17T04:40:45.348Z",
+      "aiGenerated": false,
+      "daysRelative": 0
+    },
+    {
+      "id": "b75c3079-60bc-455e-bba7-ca1236c8425b",
+      "invoiceId": "e2813b94-b0c2-40d0-baf8-400a3903aaea",
+      "partyName": "Pixel Foundry LLC",
+      "direction": "receivable",
+      "kind": "overdue",
+      "message": "Pixel Foundry LLC has not paid $2,800.00 — 20 days past due (grace applied). Follow up now and escalate if needed.",
+      "amount": 2800,
+      "currency": "USD",
+      "dueDate": "2026-09-27",
+      "createdAt": "2026-10-17T04:40:45.346Z",
+      "aiGenerated": false,
+      "daysRelative": 20
+    }
+  ]
+}
