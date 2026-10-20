@@ -24,6 +24,19 @@ cp .env.example .env.local
 npm install
 npm run dev
 ```
+## Setup
+- in order for this to be a fully operatable program you need to fill up the following
+
+  |`ADMIN_USERNAME`|name of admin default:`admin`|
+  |`ADMIN_PASSWORD`|password of admin default:`admin`|
+  |`ADMIN_SESSION_SECRET`| default:`long-random-string`|
+- for auto reminder setup
+  |`MAIL_EMAIL`|default:`you@gmail.com`|
+  |`MAIL_PASSWORD`|paceholder:`your-16-character-app-password`|
+- for payment(upi)
+  |`PAYMENT_UPI_ID`|paceholder:`yourname@upi`|
+  |`PAYMENT_PAYEE_NAME`|paceholder:`Your Business`|
+  |`PAYMENT_NOTE_PREFIX`|paceholder:`INV`|
 
 Open [http://localhost:3000](http://localhost:3000).
 
