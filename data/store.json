@@ -59,26 +59,6 @@
       "createdAt": "2026-10-17T04:40:45.088Z"
     },
     {
-      "id": "4e12f907-72d6-45ac-a91e-3609c6eeb0e7",
-      "direction": "receivable",
-      "partyName": "test",
-      "partyEmail": "billing@acme.to",
-      "amount": 0.01,
-      "currency": "USD",
-      "description": "",
-      "issueDate": "2026-10-17",
-      "dueDate": "2026-10-07",
-      "graceDays": 7,
-      "status": "paid",
-      "reminderDaysBefore": [
-        7,
-        3,
-        1
-      ],
-      "createdAt": "2026-10-17T05:26:25.626Z",
-      "paidAt": "2026-10-17T05:40:42.950Z"
-    },
-    {
       "id": "62b3cf02-7275-491d-b894-b9679b19cf2e",
       "direction": "receivable",
       "partyName": "Aurora Labs",

@@ -64,7 +64,7 @@ var __TURBOPACK__imported__module__$5b$next$5d2f$internal$2f$font$2f$google$2f$f
 ;
 ;
 const metadata = {
-    title: "duecollect — AI invoice reminders",
+    title: "DueCollect — AI invoice collection",
     description: "Track invoices and get timely payable reminders written by a local NVIDIA Cosmos model."
 };
 function RootLayout({ children }) {

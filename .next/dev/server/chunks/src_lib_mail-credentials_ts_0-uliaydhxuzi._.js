@@ -11,7 +11,7 @@ __turbopack_context__.s([
     ()=>sendingConfigured
 ]);
 /**
- * The ONE place Remitra gets the mailbox email + password from.
+ * The ONE place DueCollect gets the mailbox email + password from.
  *
  * Put the values in .env.local (never commit that file):
  *
@@ -65,7 +65,7 @@ function mailCredentials() {
     const smtpHost = process.env.MAIL_SMTP_HOST || process.env.SMTP_HOST || preset?.smtp || "";
     const imapHost = process.env.MAIL_IMAP_HOST || preset?.imap || (smtpHost ? smtpHost.replace(/^smtp[-.]?/, "imap.") : "");
     const smtpPort = Number(process.env.MAIL_SMTP_PORT || process.env.SMTP_PORT || 587);
-    const from = process.env.MAIL_FROM || process.env.SMTP_FROM || (email ? `Remitra <${email}>` : "");
+    const from = process.env.MAIL_FROM || process.env.SMTP_FROM || (email ? `DueCollect <${email}>` : "");
     return {
         email,
         password,

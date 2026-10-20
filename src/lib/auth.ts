@@ -71,7 +71,21 @@ export async function adminGuard(): Promise<NextResponse | null> {
 
 export function checkAdminLogin(username: string, password: string) {
   const creds = adminCredentials();
-  return username === creds.username && password === creds.password;
+  // Env values are trimmed, so ignore stray spaces from copy/paste or autofill.
+  const user = username.trim();
+  const pass = password.trim();
+  const ok = user === creds.username && pass === creds.password;
+
+  if (!ok && process.env.NODE_ENV !== "production") {
+    // Dev-only hint in the server terminal (never prints the password).
+    const fromEnv = Boolean(process.env.ADMIN_PASSWORD?.trim());
+    console.log(
+      `[duecollect] login failed: username ${user === creds.username ? "OK" : `WRONG (server expects "${creds.username}")`}, ` +
+        `password ${pass === creds.password ? "OK" : `WRONG (${creds.password.length} chars expected, ${pass.length} typed)`}` +
+        `${fromEnv ? "" : " — ADMIN_PASSWORD not loaded from .env.local, using default \"admin\""}`,
+    );
+  }
+  return ok;
 }
 
 export { COOKIE as ADMIN_COOKIE };

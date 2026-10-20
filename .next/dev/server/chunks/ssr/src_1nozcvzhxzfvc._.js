@@ -50,6 +50,14 @@ function AppDashboard() {
             fetch("/api/reminders"),
             fetch("/api/stats")
         ]);
+        if ([
+            invRes,
+            remRes,
+            statsRes
+        ].some((r)=>r.status === 401)) {
+            window.location.replace("/login");
+            return;
+        }
         if (!invRes.ok || !remRes.ok || !statsRes.ok) {
             throw new Error("Failed to load data");
         }
@@ -170,24 +178,24 @@ function AppDashboard() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         "aria-hidden": true,
                                         className: "grid h-9 w-9 place-items-center rounded-xl bg-[var(--teal)] text-sm font-bold text-[#f4fbf8]",
-                                        children: "R"
+                                        children: "D"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 191,
+                                        lineNumber: 195,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "font-display text-sm font-semibold tracking-[0.18em] text-[var(--sage-deep)] uppercase",
-                                        children: "Remitra"
+                                        children: "DueCollect"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 197,
+                                        lineNumber: 201,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                lineNumber: 190,
+                                lineNumber: 194,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -199,13 +207,13 @@ function AppDashboard() {
                                         children: "Cash flow calmed."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 203,
+                                        lineNumber: 207,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                lineNumber: 201,
+                                lineNumber: 205,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -213,13 +221,13 @@ function AppDashboard() {
                                 children: "Log payables and receivables. A local NVIDIA Cosmos model writes the payment emails and checks the bills customers send back."
                             }, void 0, false, {
                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                lineNumber: 205,
+                                lineNumber: 209,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/AppDashboard.tsx",
-                        lineNumber: 189,
+                        lineNumber: 193,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -234,7 +242,22 @@ function AppDashboard() {
                                         children: "Admin"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 213,
+                                        lineNumber: 217,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        type: "button",
+                                        className: "btn btn-ghost",
+                                        onClick: async ()=>{
+                                            await fetch("/api/auth/logout", {
+                                                method: "POST"
+                                            });
+                                            window.location.replace("/login");
+                                        },
+                                        children: "Log out"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/AppDashboard.tsx",
+                                        lineNumber: 220,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -245,13 +268,13 @@ function AppDashboard() {
                                         children: scanning ? "Scanning…" : "Run AI reminder scan"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 216,
+                                        lineNumber: 230,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                lineNumber: 212,
+                                lineNumber: 216,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -266,13 +289,13 @@ function AppDashboard() {
                                                 children: ai.model
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                lineNumber: 229,
+                                                lineNumber: 243,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 227,
+                                        lineNumber: 241,
                                         columnNumber: 15
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                                         children: [
@@ -283,13 +306,13 @@ function AppDashboard() {
                                                 children: "LOCAL_AI_DISABLED"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                lineNumber: 234,
+                                                lineNumber: 248,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 232,
+                                        lineNumber: 246,
                                         columnNumber: 15
                                     }, this),
                                     " · ",
@@ -298,31 +321,31 @@ function AppDashboard() {
                                         children: "email on"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 239,
+                                        lineNumber: 253,
                                         columnNumber: 15
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "email needs MAIL_EMAIL / MAIL_PASSWORD"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 241,
+                                        lineNumber: 255,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                lineNumber: 225,
+                                lineNumber: 239,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/AppDashboard.tsx",
-                        lineNumber: 211,
+                        lineNumber: 215,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/AppDashboard.tsx",
-                lineNumber: 188,
+                lineNumber: 192,
                 columnNumber: 7
             }, this),
             toast && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -330,7 +353,7 @@ function AppDashboard() {
                 children: toast
             }, void 0, false, {
                 fileName: "[project]/src/components/AppDashboard.tsx",
-                lineNumber: 248,
+                lineNumber: 262,
                 columnNumber: 9
             }, this),
             error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -338,7 +361,7 @@ function AppDashboard() {
                 children: error
             }, void 0, false, {
                 fileName: "[project]/src/components/AppDashboard.tsx",
-                lineNumber: 254,
+                lineNumber: 268,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -349,7 +372,7 @@ function AppDashboard() {
                         value: loading ? "—" : String(stats?.openCount ?? 0)
                     }, void 0, false, {
                         fileName: "[project]/src/components/AppDashboard.tsx",
-                        lineNumber: 260,
+                        lineNumber: 274,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Stat, {
@@ -358,7 +381,7 @@ function AppDashboard() {
                         hint: "Payables"
                     }, void 0, false, {
                         fileName: "[project]/src/components/AppDashboard.tsx",
-                        lineNumber: 264,
+                        lineNumber: 278,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Stat, {
@@ -367,7 +390,7 @@ function AppDashboard() {
                         hint: "Receivables"
                     }, void 0, false, {
                         fileName: "[project]/src/components/AppDashboard.tsx",
-                        lineNumber: 269,
+                        lineNumber: 283,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Stat, {
@@ -377,13 +400,13 @@ function AppDashboard() {
                         alert: (stats?.overdueCount ?? 0) > 0
                     }, void 0, false, {
                         fileName: "[project]/src/components/AppDashboard.tsx",
-                        lineNumber: 274,
+                        lineNumber: 288,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/AppDashboard.tsx",
-                lineNumber: 259,
+                lineNumber: 273,
                 columnNumber: 7
             }, this),
             (stats?.overdueParties?.length ?? 0) > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -394,7 +417,7 @@ function AppDashboard() {
                         children: "Parties who have not paid"
                     }, void 0, false, {
                         fileName: "[project]/src/components/AppDashboard.tsx",
-                        lineNumber: 284,
+                        lineNumber: 298,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -402,7 +425,7 @@ function AppDashboard() {
                         children: "Past due date plus grace window — time to follow up."
                     }, void 0, false, {
                         fileName: "[project]/src/components/AppDashboard.tsx",
-                        lineNumber: 287,
+                        lineNumber: 301,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -417,7 +440,7 @@ function AppDashboard() {
                                                 children: p.partyName
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                lineNumber: 297,
+                                                lineNumber: 311,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -431,13 +454,13 @@ function AppDashboard() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                lineNumber: 298,
+                                                lineNumber: 312,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 296,
+                                        lineNumber: 310,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -445,24 +468,24 @@ function AppDashboard() {
                                         children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$format$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["formatMoney"])(p.amount, p.currency)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 302,
+                                        lineNumber: 316,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, p.id, true, {
                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                lineNumber: 292,
+                                lineNumber: 306,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/components/AppDashboard.tsx",
-                        lineNumber: 290,
+                        lineNumber: 304,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/AppDashboard.tsx",
-                lineNumber: 283,
+                lineNumber: 297,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -476,7 +499,7 @@ function AppDashboard() {
                                 children: "Add invoice"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                lineNumber: 313,
+                                lineNumber: 327,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -484,7 +507,7 @@ function AppDashboard() {
                                 children: "Track what you must pay and what others owe you."
                             }, void 0, false, {
                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                lineNumber: 314,
+                                lineNumber: 328,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -506,12 +529,12 @@ function AppDashboard() {
                                                 children: dir === "payable" ? "I need to pay" : "They owe me"
                                             }, dir, false, {
                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                lineNumber: 321,
+                                                lineNumber: 335,
                                                 columnNumber: 17
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 319,
+                                        lineNumber: 333,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Field, {
@@ -527,12 +550,12 @@ function AppDashboard() {
                                             placeholder: "Acme Studio"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/AppDashboard.tsx",
-                                            lineNumber: 337,
+                                            lineNumber: 351,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 336,
+                                        lineNumber: 350,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Field, {
@@ -548,12 +571,12 @@ function AppDashboard() {
                                             placeholder: "billing@acme.com"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/AppDashboard.tsx",
-                                            lineNumber: 349,
+                                            lineNumber: 363,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 348,
+                                        lineNumber: 362,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -575,12 +598,12 @@ function AppDashboard() {
                                                     placeholder: "1250.00"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/AppDashboard.tsx",
-                                                    lineNumber: 362,
+                                                    lineNumber: 376,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                lineNumber: 361,
+                                                lineNumber: 375,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Field, {
@@ -594,18 +617,18 @@ function AppDashboard() {
                                                             }))
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/AppDashboard.tsx",
-                                                    lineNumber: 376,
+                                                    lineNumber: 390,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                lineNumber: 375,
+                                                lineNumber: 389,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 360,
+                                        lineNumber: 374,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Field, {
@@ -620,12 +643,12 @@ function AppDashboard() {
                                             placeholder: "March retainer"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/AppDashboard.tsx",
-                                            lineNumber: 387,
+                                            lineNumber: 401,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 386,
+                                        lineNumber: 400,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -644,12 +667,12 @@ function AppDashboard() {
                                                             }))
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/AppDashboard.tsx",
-                                                    lineNumber: 399,
+                                                    lineNumber: 413,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                lineNumber: 398,
+                                                lineNumber: 412,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Field, {
@@ -665,18 +688,18 @@ function AppDashboard() {
                                                             }))
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/AppDashboard.tsx",
-                                                    lineNumber: 410,
+                                                    lineNumber: 424,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                lineNumber: 409,
+                                                lineNumber: 423,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 397,
+                                        lineNumber: 411,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Field, {
@@ -691,12 +714,12 @@ function AppDashboard() {
                                             placeholder: "7,3,1"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/AppDashboard.tsx",
-                                            lineNumber: 423,
+                                            lineNumber: 437,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 422,
+                                        lineNumber: 436,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -706,19 +729,19 @@ function AppDashboard() {
                                         children: saving ? "Saving…" : "Save invoice"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 436,
+                                        lineNumber: 450,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                lineNumber: 318,
+                                lineNumber: 332,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/AppDashboard.tsx",
-                        lineNumber: 312,
+                        lineNumber: 326,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -735,7 +758,7 @@ function AppDashboard() {
                                                 children: "Invoices"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                lineNumber: 445,
+                                                lineNumber: 459,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -764,18 +787,18 @@ function AppDashboard() {
                                                         children: label
                                                     }, key, false, {
                                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                                        lineNumber: 455,
+                                                        lineNumber: 469,
                                                         columnNumber: 19
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                lineNumber: 446,
+                                                lineNumber: 460,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 444,
+                                        lineNumber: 458,
                                         columnNumber: 13
                                     }, this),
                                     loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -783,14 +806,14 @@ function AppDashboard() {
                                         children: "Loading…"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 472,
+                                        lineNumber: 486,
                                         columnNumber: 15
                                     }, this) : filtered.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: "text-sm text-[var(--ink-soft)]",
                                         children: "No invoices yet — add one on the left."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 474,
+                                        lineNumber: 488,
                                         columnNumber: 15
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                                         className: "divide-y divide-[var(--line)]",
@@ -808,20 +831,20 @@ function AppDashboard() {
                                                                             direction: inv.direction
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                            lineNumber: 484,
+                                                                            lineNumber: 498,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(StatusBadge, {
                                                                             status: inv.status
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                            lineNumber: 485,
+                                                                            lineNumber: 499,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                    lineNumber: 483,
+                                                                    lineNumber: 497,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -829,7 +852,7 @@ function AppDashboard() {
                                                                     children: inv.partyName
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                    lineNumber: 487,
+                                                                    lineNumber: 501,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -847,25 +870,25 @@ function AppDashboard() {
                                                                                     children: inv.paymentId
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                                    lineNumber: 495,
+                                                                                    lineNumber: 509,
                                                                                     columnNumber: 40
                                                                                 }, this)
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                            lineNumber: 493,
+                                                                            lineNumber: 507,
                                                                             columnNumber: 29
                                                                         }, this) : null
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                    lineNumber: 488,
+                                                                    lineNumber: 502,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/AppDashboard.tsx",
-                                                            lineNumber: 482,
+                                                            lineNumber: 496,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -876,7 +899,7 @@ function AppDashboard() {
                                                                     children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$format$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["formatMoney"])(inv.amount, inv.currency)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                    lineNumber: 501,
+                                                                    lineNumber: 515,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -888,7 +911,7 @@ function AppDashboard() {
                                                                             children: "Pay QR"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                            lineNumber: 506,
+                                                                            lineNumber: 520,
                                                                             columnNumber: 29
                                                                         }, this),
                                                                         inv.status !== "paid" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -898,7 +921,7 @@ function AppDashboard() {
                                                                             children: "Mark paid"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                            lineNumber: 514,
+                                                                            lineNumber: 528,
                                                                             columnNumber: 29
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -908,41 +931,41 @@ function AppDashboard() {
                                                                             children: "Delete"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                            lineNumber: 522,
+                                                                            lineNumber: 536,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                    lineNumber: 504,
+                                                                    lineNumber: 518,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/AppDashboard.tsx",
-                                                            lineNumber: 500,
+                                                            lineNumber: 514,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/AppDashboard.tsx",
-                                                    lineNumber: 481,
+                                                    lineNumber: 495,
                                                     columnNumber: 21
                                                 }, this)
                                             }, inv.id, false, {
                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                lineNumber: 480,
+                                                lineNumber: 494,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 478,
+                                        lineNumber: 492,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                lineNumber: 443,
+                                lineNumber: 457,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -953,7 +976,7 @@ function AppDashboard() {
                                         children: "AI reminders"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 539,
+                                        lineNumber: 553,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -961,7 +984,7 @@ function AppDashboard() {
                                         children: "Upcoming, due-today, and overdue notices — written by the local AI model."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 540,
+                                        lineNumber: 554,
                                         columnNumber: 13
                                     }, this),
                                     reminders.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -969,7 +992,7 @@ function AppDashboard() {
                                         children: "Run a reminder scan to generate your first messages."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 545,
+                                        lineNumber: 559,
                                         columnNumber: 15
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                                         className: "space-y-3",
@@ -983,14 +1006,14 @@ function AppDashboard() {
                                                                 kind: r.kind
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                lineNumber: 556,
+                                                                lineNumber: 570,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(DirectionBadge, {
                                                                 direction: r.direction
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                lineNumber: 557,
+                                                                lineNumber: 571,
                                                                 columnNumber: 23
                                                             }, this),
                                                             r.aiGenerated ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -998,14 +1021,14 @@ function AppDashboard() {
                                                                 children: "NVIDIA"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                lineNumber: 559,
+                                                                lineNumber: 573,
                                                                 columnNumber: 25
                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 className: "badge bg-[var(--mist)] text-[var(--ink-soft)]",
                                                                 children: "Template"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                lineNumber: 563,
+                                                                lineNumber: 577,
                                                                 columnNumber: 25
                                                             }, this),
                                                             r.emailed ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1013,13 +1036,13 @@ function AppDashboard() {
                                                                 children: "Emailed"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                                lineNumber: 568,
+                                                                lineNumber: 582,
                                                                 columnNumber: 25
                                                             }, this) : null
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                                        lineNumber: 555,
+                                                        lineNumber: 569,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1027,7 +1050,7 @@ function AppDashboard() {
                                                         children: r.message
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                                        lineNumber: 573,
+                                                        lineNumber: 587,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1043,54 +1066,54 @@ function AppDashboard() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                                        lineNumber: 574,
+                                                        lineNumber: 588,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, r.id, true, {
                                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                                lineNumber: 551,
+                                                lineNumber: 565,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/AppDashboard.tsx",
-                                        lineNumber: 549,
+                                        lineNumber: 563,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/AppDashboard.tsx",
-                                lineNumber: 538,
+                                lineNumber: 552,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/AppDashboard.tsx",
-                        lineNumber: 442,
+                        lineNumber: 456,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/AppDashboard.tsx",
-                lineNumber: 311,
+                lineNumber: 325,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
                 className: "mt-12 border-t border-[var(--line)] pt-6 text-center text-xs text-[var(--ink-soft)]",
                 children: [
-                    "Remitra · local inference (",
+                    "DueCollect · local inference (",
                     ai?.model ?? "nvidia/Cosmos3-Nano",
                     ")"
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/AppDashboard.tsx",
-                lineNumber: 587,
+                lineNumber: 601,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/AppDashboard.tsx",
-        lineNumber: 187,
+        lineNumber: 191,
         columnNumber: 5
     }, this);
 }
@@ -1103,14 +1126,14 @@ function Field({ label, children }) {
                 children: label
             }, void 0, false, {
                 fileName: "[project]/src/components/AppDashboard.tsx",
-                lineNumber: 603,
+                lineNumber: 617,
                 columnNumber: 7
             }, this),
             children
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/AppDashboard.tsx",
-        lineNumber: 602,
+        lineNumber: 616,
         columnNumber: 5
     }, this);
 }
@@ -1123,7 +1146,7 @@ function Stat({ label, value, hint, alert }) {
                 children: label
             }, void 0, false, {
                 fileName: "[project]/src/components/AppDashboard.tsx",
-                lineNumber: 626,
+                lineNumber: 640,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1131,7 +1154,7 @@ function Stat({ label, value, hint, alert }) {
                 children: value
             }, void 0, false, {
                 fileName: "[project]/src/components/AppDashboard.tsx",
-                lineNumber: 629,
+                lineNumber: 643,
                 columnNumber: 7
             }, this),
             hint && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1139,13 +1162,13 @@ function Stat({ label, value, hint, alert }) {
                 children: hint
             }, void 0, false, {
                 fileName: "[project]/src/components/AppDashboard.tsx",
-                lineNumber: 634,
+                lineNumber: 648,
                 columnNumber: 16
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/AppDashboard.tsx",
-        lineNumber: 623,
+        lineNumber: 637,
         columnNumber: 5
     }, this);
 }
@@ -1156,7 +1179,7 @@ function DirectionBadge({ direction }) {
         children: payable ? "Payable" : "Receivable"
     }, void 0, false, {
         fileName: "[project]/src/components/AppDashboard.tsx",
-        lineNumber: 642,
+        lineNumber: 656,
         columnNumber: 5
     }, this);
 }
@@ -1167,7 +1190,7 @@ function StatusBadge({ status }) {
         children: status
     }, void 0, false, {
         fileName: "[project]/src/components/AppDashboard.tsx",
-        lineNumber: 657,
+        lineNumber: 671,
         columnNumber: 10
     }, this);
 }
@@ -1179,7 +1202,7 @@ function KindBadge({ kind }) {
         children: label
     }, void 0, false, {
         fileName: "[project]/src/components/AppDashboard.tsx",
-        lineNumber: 673,
+        lineNumber: 687,
         columnNumber: 10
     }, this);
 }

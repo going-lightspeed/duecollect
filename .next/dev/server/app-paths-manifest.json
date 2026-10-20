@@ -1,10 +1,15 @@
 {
   "/admin/page": "app/admin/page.js",
   "/api/admin/status/route": "app/api/admin/status/route.js",
+  "/api/auth/login/route": "app/api/auth/login/route.js",
   "/api/auth/me/route": "app/api/auth/me/route.js",
+  "/api/invoices/[id]/route": "app/api/invoices/[id]/route.js",
   "/api/invoices/route": "app/api/invoices/route.js",
+  "/api/pay/[id]/route": "app/api/pay/[id]/route.js",
   "/api/payments/route": "app/api/payments/route.js",
   "/api/reminders/route": "app/api/reminders/route.js",
   "/api/stats/route": "app/api/stats/route.js",
-  "/page": "app/page.js"
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/pay/[id]/page": "app/pay/[id]/page.js"
 }

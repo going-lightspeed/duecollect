@@ -1,0 +1,13 @@
+var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/invoices/[id]/route.js")
+R.c("server/chunks/node_modules_next_0-zmjc5p5rfk0._.js")
+R.c("server/chunks/node_modules_openai_internal_18irsus4kcgf0._.js")
+R.c("server/chunks/node_modules_openai_resources_0nhrgq0r6umd6._.js")
+R.c("server/chunks/node_modules_openai_lib_17vbstl0i_o7w._.js")
+R.c("server/chunks/node_modules_openai_client_mjs_0rci8anpc2hz3._.js")
+R.c("server/chunks/node_modules_openai_0_nnbdepng4mm._.js")
+R.c("server/chunks/node_modules_jsqr_dist_jsQR_03atx18d3ea2k.js")
+R.c("server/chunks/[root-of-the-server]__20dg_r6ls6f5v._.js")
+R.c("server/chunks/[root-of-the-server]__0qynt7twug8ww._.js")
+R.c("server/chunks/_next-internal_server_app_api_invoices_[id]_route_actions_1ele029f59we-.js")
+R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/src/app/api/invoices/[id]/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/src/app/api/invoices/[id]/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports

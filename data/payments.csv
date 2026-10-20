@@ -1,0 +1,2 @@
+id,invoice_id,party_name,payment_id,amount,currency,status,reported_at,confirmed_at,confirmed_by,verified_by_ai,note
+ef0103a4-e2fa-4ef8-8bad-76cb6816cbb0,62b3cf02-7275-491d-b894-b9679b19cf2e,Aurora Labs,UPI-20261017-XYZ789,1500,INR,confirmed,2026-10-17T12:54:00.730Z,2026-10-17T12:54:00.808Z,admin,,paid via phonepe

@@ -26,6 +26,8 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 async function GET() {
+    const denied = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["adminGuard"])();
+    if (denied) return denied;
     const invoices = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["listInvoices"])();
     const refreshed = await Promise.all(invoices.map(async (inv)=>{
         const next = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$status$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["refreshInvoiceStatus"])(inv);
@@ -261,6 +263,8 @@ function aiConfigStatus() {
 __turbopack_context__.s([
     "ADMIN_COOKIE",
     ()=>COOKIE,
+    "adminGuard",
+    ()=>adminGuard,
     "checkAdminLogin",
     ()=>checkAdminLogin,
     "clearAdminSession",
@@ -275,15 +279,17 @@ __turbopack_context__.s([
     ()=>verifyAdminToken
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/headers.js [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/server.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$crypto__$5b$external$5d$__$28$crypto$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/crypto [external] (crypto, cjs)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$config$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/config.ts [app-route] (ecmascript)");
 ;
 ;
 ;
-const COOKIE = "remitra_admin";
+;
+const COOKIE = "duecollect_admin";
 const MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 function secret() {
-    return process.env.ADMIN_SESSION_SECRET || process.env.ADMIN_PASSWORD || "remitra-dev-secret";
+    return process.env.ADMIN_SESSION_SECRET || process.env.ADMIN_PASSWORD || "duecollect-dev-secret";
 }
 function sign(value) {
     return (0, __TURBOPACK__imported__module__$5b$externals$5d2f$crypto__$5b$external$5d$__$28$crypto$2c$__cjs$29$__["createHmac"])("sha256", secret()).update(value).digest("hex");
@@ -328,9 +334,26 @@ async function clearAdminSession() {
     const jar = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["cookies"])();
     jar.delete(COOKIE);
 }
+async function adminGuard() {
+    if (await isAdminLoggedIn()) return null;
+    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+        error: "Unauthorized"
+    }, {
+        status: 401
+    });
+}
 function checkAdminLogin(username, password) {
     const creds = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$config$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["adminCredentials"])();
-    return username === creds.username && password === creds.password;
+    // Env values are trimmed, so ignore stray spaces from copy/paste or autofill.
+    const user = username.trim();
+    const pass = password.trim();
+    const ok = user === creds.username && pass === creds.password;
+    if (!ok && ("TURBOPACK compile-time value", "development") !== "production") {
+        // Dev-only hint in the server terminal (never prints the password).
+        const fromEnv = Boolean(process.env.ADMIN_PASSWORD?.trim());
+        console.log(`[duecollect] login failed: username ${user === creds.username ? "OK" : `WRONG (server expects "${creds.username}")`}, ` + `password ${pass === creds.password ? "OK" : `WRONG (${creds.password.length} chars expected, ${pass.length} typed)`}` + `${fromEnv ? "" : " — ADMIN_PASSWORD not loaded from .env.local, using default \"admin\""}`);
+    }
+    return ok;
 }
 ;
 }),
@@ -473,7 +496,7 @@ function appBaseUrl() {
 function paymentConfig() {
     return {
         upiId: process.env.PAYMENT_UPI_ID?.trim() || "",
-        payeeName: process.env.PAYMENT_PAYEE_NAME?.trim() || "Remitra",
+        payeeName: process.env.PAYMENT_PAYEE_NAME?.trim() || "DueCollect",
         notePrefix: process.env.PAYMENT_NOTE_PREFIX?.trim() || "INV"
     };
 }
@@ -621,7 +644,7 @@ async function syncPaymentsCsv(payments) {
         ...rows
     ].join("\n") + "\n", "utf8");
 }
-/* ------------------------------------------------------------------ */ /* emails.csv — every email Remitra sent or received (append-only)     */ /* ------------------------------------------------------------------ */ const EMAILS_FILE = __TURBOPACK__imported__module__$5b$externals$5d2f$path__$5b$external$5d$__$28$path$2c$__cjs$29$__["default"].join(DATA_DIR, "emails.csv");
+/* ------------------------------------------------------------------ */ /* emails.csv — every email DueCollect sent or received (append-only)     */ /* ------------------------------------------------------------------ */ const EMAILS_FILE = __TURBOPACK__imported__module__$5b$externals$5d2f$path__$5b$external$5d$__$28$path$2c$__cjs$29$__["default"].join(DATA_DIR, "emails.csv");
 const EMAILS_HEADER = [
     "id",
     "at",
@@ -927,7 +950,7 @@ function esc(s) {
     return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 function invoiceEmailTag(invoiceId) {
-    return `[Remitra INV:${invoiceId}]`;
+    return `[DueCollect INV:${invoiceId}]`;
 }
 /** Public pay-page links are only useful when the app isn't on localhost. */ function publicPayUrl(invoiceId) {
     const base = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$config$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["appBaseUrl"])();
@@ -1052,7 +1075,7 @@ async function sendPaymentReminderEmail(invoice, reminder) {
     const subject = reminder.kind === "overdue" ? `${tag} Overdue — ${amount} still unpaid` : reminder.kind === "due_today" ? `${tag} Payment due today — ${amount}` : `${tag} Payment reminder — ${amount} due ${invoice.dueDate}`;
     const html = `
   <div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#14221c;line-height:1.5">
-    <p style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#3f6b55">Remitra</p>
+    <p style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#3f6b55">DueCollect</p>
     <h1 style="font-size:22px;margin:8px 0 16px">Payment reminder</h1>
     <p>${esc(reminder.message)}</p>
     <p style="margin:20px 0;padding:16px;background:#eef4ef;border-radius:12px">
@@ -1229,7 +1252,7 @@ __turbopack_context__.s([
     ()=>sendingConfigured
 ]);
 /**
- * The ONE place Remitra gets the mailbox email + password from.
+ * The ONE place DueCollect gets the mailbox email + password from.
  *
  * Put the values in .env.local (never commit that file):
  *
@@ -1283,7 +1306,7 @@ function mailCredentials() {
     const smtpHost = process.env.MAIL_SMTP_HOST || process.env.SMTP_HOST || preset?.smtp || "";
     const imapHost = process.env.MAIL_IMAP_HOST || preset?.imap || (smtpHost ? smtpHost.replace(/^smtp[-.]?/, "imap.") : "");
     const smtpPort = Number(process.env.MAIL_SMTP_PORT || process.env.SMTP_PORT || 587);
-    const from = process.env.MAIL_FROM || process.env.SMTP_FROM || (email ? `Remitra <${email}>` : "");
+    const from = process.env.MAIL_FROM || process.env.SMTP_FROM || (email ? `DueCollect <${email}>` : "");
     return {
         email,
         password,

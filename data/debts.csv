@@ -1,0 +1,5 @@
+id,party_name,party_email,direction,amount,currency,description,due_date,status,added_at,settled_at,amount_settled,payment_id,settlement_method
+7e7be7c1-5bca-47d7-9ca6-4d3c1c95b292,Northwind Electric,,payable,420.5,USD,Office utilities,2026-10-20,pending,2026-10-17T04:40:45.042Z,,,,
+e2813b94-b0c2-40d0-baf8-400a3903aaea,Pixel Foundry LLC,,receivable,2800,USD,Brand redesign phase 1,2026-09-27,paid,2026-10-17T04:40:45.073Z,2026-10-17T05:40:46.009Z,2800,,
+9384e0b1-4996-4180-9643-6061e3f22bc6,Cloudflare,,payable,49,USD,Workers plan,2026-10-17,pending,2026-10-17T04:40:45.088Z,,,,
+62b3cf02-7275-491d-b894-b9679b19cf2e,Aurora Labs,aurora@example.com,receivable,1500,INR,Sprint delivery,2026-10-02,paid,2026-10-17T12:54:00.677Z,2026-10-17T12:54:00.811Z,1500,UPI-20261017-XYZ789,

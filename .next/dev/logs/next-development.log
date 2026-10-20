@@ -1,9 +1,12 @@
-{"timestamp":"00:00:01.953","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:00:02.313","source":"Server","level":"LOG","message":"[remitra inbox] {}"}
-{"timestamp":"00:00:19.444","source":"Server","level":"LOG","message":"○ Compiling / ..."}
-{"timestamp":"00:00:20.759","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
-{"timestamp":"00:00:23.960","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
-{"timestamp":"00:00:24.005","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
-{"timestamp":"00:01:02.313","source":"Server","level":"LOG","message":"[remitra inbox] {}"}
-{"timestamp":"00:02:02.245","source":"Server","level":"LOG","message":"[remitra inbox] {}"}
-{"timestamp":"00:03:02.058","source":"Server","level":"LOG","message":"[remitra inbox] {}"}
+{"timestamp":"00:00:02.114","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:02.627","source":"Server","level":"LOG","message":"[duecollect inbox] {}"}
+{"timestamp":"00:00:12.743","source":"Server","level":"LOG","message":"○ Compiling / ..."}
+{"timestamp":"00:00:15.717","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:00:21.820","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:00:29.746","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
+{"timestamp":"00:00:29.759","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
+{"timestamp":"00:01:02.738","source":"Server","level":"LOG","message":"[duecollect inbox] {}"}
+{"timestamp":"00:02:02.530","source":"Server","level":"LOG","message":"[duecollect inbox] {}"}
+{"timestamp":"00:03:02.950","source":"Server","level":"LOG","message":"[duecollect inbox] {}"}
+{"timestamp":"00:04:02.719","source":"Server","level":"LOG","message":"[duecollect inbox] {}"}
+{"timestamp":"00:05:02.447","source":"Server","level":"LOG","message":"[duecollect inbox] {}"}

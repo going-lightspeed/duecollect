@@ -438,7 +438,7 @@ function appBaseUrl() {
 function paymentConfig() {
     return {
         upiId: process.env.PAYMENT_UPI_ID?.trim() || "",
-        payeeName: process.env.PAYMENT_PAYEE_NAME?.trim() || "Remitra",
+        payeeName: process.env.PAYMENT_PAYEE_NAME?.trim() || "DueCollect",
         notePrefix: process.env.PAYMENT_NOTE_PREFIX?.trim() || "INV"
     };
 }
@@ -586,7 +586,7 @@ async function syncPaymentsCsv(payments) {
         ...rows
     ].join("\n") + "\n", "utf8");
 }
-/* ------------------------------------------------------------------ */ /* emails.csv — every email Remitra sent or received (append-only)     */ /* ------------------------------------------------------------------ */ const EMAILS_FILE = __TURBOPACK__imported__module__$5b$externals$5d2f$path__$5b$external$5d$__$28$path$2c$__cjs$29$__["default"].join(DATA_DIR, "emails.csv");
+/* ------------------------------------------------------------------ */ /* emails.csv — every email DueCollect sent or received (append-only)     */ /* ------------------------------------------------------------------ */ const EMAILS_FILE = __TURBOPACK__imported__module__$5b$externals$5d2f$path__$5b$external$5d$__$28$path$2c$__cjs$29$__["default"].join(DATA_DIR, "emails.csv");
 const EMAILS_HEADER = [
     "id",
     "at",
@@ -892,7 +892,7 @@ function esc(s) {
     return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 function invoiceEmailTag(invoiceId) {
-    return `[Remitra INV:${invoiceId}]`;
+    return `[DueCollect INV:${invoiceId}]`;
 }
 /** Public pay-page links are only useful when the app isn't on localhost. */ function publicPayUrl(invoiceId) {
     const base = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$config$2e$ts__$5b$instrumentation$5d$__$28$ecmascript$29$__["appBaseUrl"])();
@@ -1017,7 +1017,7 @@ async function sendPaymentReminderEmail(invoice, reminder) {
     const subject = reminder.kind === "overdue" ? `${tag} Overdue — ${amount} still unpaid` : reminder.kind === "due_today" ? `${tag} Payment due today — ${amount}` : `${tag} Payment reminder — ${amount} due ${invoice.dueDate}`;
     const html = `
   <div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#14221c;line-height:1.5">
-    <p style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#3f6b55">Remitra</p>
+    <p style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#3f6b55">DueCollect</p>
     <h1 style="font-size:22px;margin:8px 0 16px">Payment reminder</h1>
     <p>${esc(reminder.message)}</p>
     <p style="margin:20px 0;padding:16px;background:#eef4ef;border-radius:12px">
@@ -1470,7 +1470,7 @@ __turbopack_context__.s([
     ()=>sendingConfigured
 ]);
 /**
- * The ONE place Remitra gets the mailbox email + password from.
+ * The ONE place DueCollect gets the mailbox email + password from.
  *
  * Put the values in .env.local (never commit that file):
  *
@@ -1524,7 +1524,7 @@ function mailCredentials() {
     const smtpHost = process.env.MAIL_SMTP_HOST || process.env.SMTP_HOST || preset?.smtp || "";
     const imapHost = process.env.MAIL_IMAP_HOST || preset?.imap || (smtpHost ? smtpHost.replace(/^smtp[-.]?/, "imap.") : "");
     const smtpPort = Number(process.env.MAIL_SMTP_PORT || process.env.SMTP_PORT || 587);
-    const from = process.env.MAIL_FROM || process.env.SMTP_FROM || (email ? `Remitra <${email}>` : "");
+    const from = process.env.MAIL_FROM || process.env.SMTP_FROM || (email ? `DueCollect <${email}>` : "");
     return {
         email,
         password,
@@ -1884,7 +1884,7 @@ async function processInboundPayment(opts) {
 }
 function extractInvoiceIdFromText(...parts) {
     const blob = parts.join("\n");
-    const m = blob.match(/\[Remitra\s+INV:([0-9a-f-]{36})\]/i) || blob.match(/INV:([0-9a-f-]{36})/i) || blob.match(/\/pay\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i);
+    const m = blob.match(/\[(?:DueCollect|Remitra)\s+INV:([0-9a-f-]{36})\]/i) || blob.match(/INV:([0-9a-f-]{36})/i) || blob.match(/\/pay\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i);
     return m?.[1] ?? null;
 }
 __turbopack_async_result__();

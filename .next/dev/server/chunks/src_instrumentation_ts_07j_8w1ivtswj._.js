@@ -13,7 +13,7 @@ async function register() {
     if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
     ;
     const g = globalThis;
-    if (g.__remitraInbox) return; // already running (dev hot-reload)
+    if (g.__duecollectInbox) return; // already running (dev hot-reload)
     const seconds = Number(process.env.INBOX_POLL_SECONDS ?? 60);
     if (!Number.isFinite(seconds) || seconds <= 0) return;
     const { receivingConfigured } = await __turbopack_context__.A("[project]/src/lib/mail-credentials.ts [instrumentation] (ecmascript, async loader)");
@@ -22,12 +22,12 @@ async function register() {
     const tick = async ()=>{
         try {
             const r = await pollInbox();
-            if (r.checked || r.errors.length) console.log("[remitra inbox]", r);
+            if (r.checked || r.errors.length) console.log("[duecollect inbox]", r);
         } catch (err) {
-            console.error("[remitra inbox] poll failed:", err);
+            console.error("[duecollect inbox] poll failed:", err);
         }
     };
-    g.__remitraInbox = setInterval(tick, seconds * 1000);
+    g.__duecollectInbox = setInterval(tick, seconds * 1000);
     void tick();
 }
 }),
