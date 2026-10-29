@@ -43,9 +43,14 @@ npm run dev
   |`PAYMENT_UPI_ID`|paceholder:`yourname@upi`|
   |`PAYMENT_PAYEE_NAME`|paceholder:`Your Business`|
   |`PAYMENT_NOTE_PREFIX`|paceholder:`INV`|
-OPEN FILE IN CURRENT DIRECTRY THROUGH cd IF ON LINUX.
-run "npm run dev".
-Open [http://localhost:3000](http://localhost:3000).
+1. Open the project directory using `cd` in the Linux terminal.
+
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 1. Add invoices  
 2. Click **Run AI reminder scan**  
