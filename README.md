@@ -43,7 +43,8 @@ npm run dev
   |`PAYMENT_UPI_ID`|paceholder:`yourname@upi`|
   |`PAYMENT_PAYEE_NAME`|paceholder:`Your Business`|
   |`PAYMENT_NOTE_PREFIX`|paceholder:`INV`|
-
+OPEN FILE IN CURRENT DIRECTRY THROUGH cd IF ON LINUX
+ run "npm run dev"
 Open [http://localhost:3000](http://localhost:3000).
 
 1. Add invoices  
